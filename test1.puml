@@ -6,9 +6,10 @@ object "Пост (post)" as post
 posts-->post
 
 posts : -Посты : post [0..*]
-
+!startsub BASIC
 post : -ИД поста (_id) : string [0..*]
 post : -Текст поста (text) : string [0..*]
 post : -Дата создания (createdAt) : string [0..*]
+!endsub
 
 @endumlml
