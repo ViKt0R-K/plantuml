@@ -1,0 +1,180 @@
+@startuml
+/'
+ * PlantUml Logical Database support
+ *
+ * @author    Ashley Kitson
+ * @license   BSD-3 Clause
+ * @copyright Ashley Kitson, UK, 2020
+'/
+/'
+Components
+'/
+'Logical diagrams deal with Entity, so mark Table class a E
+!unquoted function Table(alias, name="", description="")
+	!if (%strlen(name) == 0)
+		!name = alias
+	!endif
+	!if (%strlen(description) > 0)
+		class alias as "name\n(description)" << (E,#FFAAAA)Table>>
+	!else
+		class "name" as alias << (E,#FFAAAA)Table>>
+	!endif
+!endfunction
+'Psuedonym for Table
+!define Entity(alias, name="", description="") Table(alias, name, description)
+
+'Type (Enum)
+!unquoted function Type(alias, name="", description="")
+	!if (%strlen(name) == 0)
+    	!name = alias
+    !endif
+    !if (%strlen(description) > 0)
+		enum alias as "name\n(description)" << (T, green)Enum>>
+	!else
+		enum "name" as alias << (T, green)Enum>>
+    !endif
+!endfunction
+'Set (Enum)
+!unquoted function Set(alias, name="", description="")
+	!if (%strlen(name) == 0)
+    	!name = alias
+    !endif
+    !if (%strlen(description) > 0)
+		enum alias as "name\n(description)" << (S, green)Set>>
+	!else
+		enum "name" as alias << (S, green)Set>>
+    !endif
+!endfunction
+
+/'
+Data Types
+'/
+!define string(l=30) string
+!define text() text
+!define date() date
+!define time() time
+!define datetime() datetime
+!define int(l=8) int
+!define real() real
+!define bool() boolean
+
+/'
+Data Type modifiers
+'/
+!define not_null(name, type) name type not empty
+
+/'
+Indexes
+'/
+'Primary key is bold. By default PKs are called 'id' and are autoincrement Integers
+!unquoted function primary($name = 'id', $type=int(), $auto=1)
+	!$autoincrement = ''
+	<b>PK $name</b> :$type $autoincrement
+!endfunction
+
+'Non unique index
+!unquoted function idx($name, $type=int())
+	<color:blue>IDX $name</color> :$type
+!endfunction
+
+'Unique Index
+!unquoted function unique($name, $type=int())
+	<color:blue>KEY $name</color> :$type
+!endfunction
+
+'Generic index definitions
+!define idx2(name1, name2) <i>index(name1, name2)</i>
+!define idx3(name1, name2, name3) <i>index(name1, name2, name3)</i>
+
+/'
+Entity joins
+'/
+!unquoted function _join($from, $to, $verb, $fNum, $tNum)
+	!if ($fNum == 0)
+		!if ($tNum == 0)
+			$from -- $to: $verb
+		!endif
+		!if ($tNum == 1)
+			$from "0" o-- "1" $to: $verb
+		!endif
+		!if ($tNum == 'n')
+			$from "0" o-- $to: $verb
+		!endif
+		!if (%intval($tNum) > 1)
+			$from --o "$tNum" $to: $verb
+		!endif
+	!endif
+	!if ($fNum == 1)
+		!if ($tNum == 0)
+			$from -- $to: $verb
+		!endif
+		!if ($tNum == 1)
+			$from *-- $to: $verb
+		!endif
+		!if ($tNum == 'n')
+			$from o-- $to: $verb
+		!endif
+		!if (%intval($tNum) > 1)
+			$from o-- "$tNum" $to: $verb
+		!endif
+	!endif
+	!if ($fNum == 'n')
+		!if ($tNum == 0)
+			$from --o $to: $verb
+		!endif
+		!if ($tNum == 1)
+			$from --o $to: $verb
+		!endif
+		!if ($tNum == 'n')
+			$from o--o $to: $verb
+		!endif
+		!if (%intval($tNum) > 1)
+			$from o--o "$tNum" $to: $verb
+		!endif
+	!endif
+	!if (%intval($fNum) > 1)
+		!if ($tNum == 0)
+			$from "$fNum" o-- $to: $verb
+		!endif
+		!if ($tNum == 1)
+			$from "$fNum" o-- $to: $verb
+		!endif
+		!if ($tNum == 'n')
+			$from "$fNum" o--o $to: $verb
+		!endif
+		!if (%intval($tNum) > 1)
+			$from "$fNum" o--o "$tNum" $to: $verb
+		!endif
+	!endif
+!endfunction
+
+'Zero, one or more to many
+!unquoted function zeromany(from, to, verb, tNum='n')
+	_join(from,to,verb,0,tNum)
+!endfunction
+
+'One to Many
+!unquoted function onemany(from, to, verb, tNum='n')
+	_join(from,to,verb,1,tNum)
+!endfunction
+
+'Many to Many
+!unquoted function manymany($from, $to, $verbFrom, $verbTo)
+	_join($from, $to, "$verbFrom >\n< $verbTo", n, n)
+!endfunction
+
+'One To One
+!unquoted function oneone(from, to, verb, keyname='id', type=int())
+	_join(from,to,verb,1,1)
+!endfunction
+
+'Type Dependency
+!unquoted function depends($from, $to, $colName)
+    $from : $colName $to
+	$from::$colName --> $to : $colName
+!endfunction
+
+
+hide stereotypes
+hide empty members
+@enduml
