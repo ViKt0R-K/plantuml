@@ -1,0 +1,14 @@
+@startuml
+
+object "Список постов" as posts
+object "Пост (post)" as post
+
+posts-->post
+
+posts : -Посты : post [0..*]
+
+post : -ИД поста (_id) : string [0..*]
+post : -Текст поста (text) : string [0..*]
+post : -Дата создания (createdAt) : string [0..*]
+
+@endumlml
