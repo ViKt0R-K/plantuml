@@ -14,7 +14,7 @@ alt У пользователя есть активная корзина
 	Back<--OrderGate: Возвращает ИД корзины пользователя
 	Back-> OrderGate: /baskets/{basketId} (получаем полную корзину)
 	Back<--OrderGate: Возвращает полную корзину
-	!include https://raw.githubusercontent.com/ViKt0R-K/plantuml/main/leftOrTerritory.puml
+	!include https://raw.githubusercontent.com/ViKt0R-K/plantuml/main/cart/leftOrTerritory.puml
 	Back->OrderGate: /baskets/{{basket}}/delivery/get-alt-delivery (получаем список вариантов доставки)
 	note right: Отправляем в запросе все линии из массивов unallocatedLines и obtainPoints
 	Back<--OrderGate: Возвращает список доступных вариантов для доставки
