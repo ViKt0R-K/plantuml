@@ -1,0 +1,48 @@
+@startuml
+
+title Activity Diagram (Full Cart)
+
+Front-> Back: <font color=blue><b>POST</font> /cart/shipmentType
+Back-> OrderGate: /baskets (проверка наличия корзины)
+alt У пользователя есть активная корзина
+	Back<--OrderGate: Возвращает ИД корзины пользователя
+	Back-> OrderGate: /baskets/{basketId} (получаем полную корзину)
+	Back<--OrderGate: Возвращает полную корзину
+	!include https://raw.githubusercontent.com/ViKt0R-K/plantuml/main/leftOrTerritory.puml
+	Back->OrderGate: /baskets/{{basket}}/delivery/get-alt-delivery (получаем список вариантов доставки)
+	note right: Отправляем в запросе все линии из массивов unallocatedLines и obtainPoints
+	Back<--OrderGate: Возвращает список доступных вариантов для доставки
+	Back->Back: Выбираем наилучший вариант
+	note right: Наилучший считаем тот, в котором можно получить наибольшее количество
+	Back->OrderGate: /baskets/{{basket}}/obtain-points/delivery (устанавливаем выбранный вариант)
+	note right: Отправляем в запросе все линии из массивов unallocatedLines и obtainPoints
+	Back<--OrderGate: Возвращает полную корзину
+	Back->OrderGate: /baskets/{{basket}}/obtain-points/{{obtainPoints}} (редактируем реквизиты МСП)
+	Back<--OrderGate: Возвращает полную корзину
+	Back-> OrderGate: /baskets/{basketId}/get-alt-channels (получаем доступные способы получения)
+	note right: Отправляем в запросе все линии из массивов unallocatedLines и obtainPoints
+	Back<--OrderGate: Возвращает доступные способы получения
+	Back-> OrderGate: /baskets/{basketId}/calculate (пересчёт корзины)
+	Back<--OrderGate: Возвращает полную корзину
+	Back-> Back: Подсчёт total
+	note right
+		Если obtainPoints=0, то подсчёт производится методом сложения линий
+		если obtainPoints!=0, то значения берём из МСП
+	endnote
+		Back-[#blue]>Back: Сортировка товаров
+	note right #blue
+		Сначала сортируем по productId
+		затем по wareId
+		endnote
+else У пользователя нет активной корзины
+	Back<--OrderGate: Возвращает "basketExist": false
+end
+Front<-- Back: Возвращает информацию по состоянию полной корзины
+
+legend left
+Поля без изменений
+<font color=grey>Поля к удалению</font>
+<font color=blue>Новые поля</font>
+endlegend
+
+@enduml
