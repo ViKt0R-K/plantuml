@@ -24,4 +24,4 @@ alt #grey SMSTORE-1159 корзина в статусе LEFT
 			endnote
     		Back<--OrderGate: Возвращает полную корзину
 		end
-	end
+end
