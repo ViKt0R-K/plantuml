@@ -1,6 +1,12 @@
 @startuml
 
-title Activity Diagram (Full Cart)
+title ShipmentTipeDelivery
+
+participant Front
+participant Back
+participant OrderGate
+participant ProductGate
+participant GeoGate
 
 Front-> Back: <font color=blue><b>POST</font> /cart/shipmentType
 Back-> OrderGate: /baskets (проверка наличия корзины)
