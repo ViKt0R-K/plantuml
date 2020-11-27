@@ -8,6 +8,11 @@ participant OrderGate
 participant ProductGate
 participant GeoGate
 
+participant Front
+participant Back
+participant ProductGate
+participant OrderGate
+
 Front-> Back: <font color=blue><b>POST</font> /cart/shipmentType
 Back-> OrderGate: /baskets (проверка наличия корзины)
 alt У пользователя есть активная корзина
