@@ -4,6 +4,7 @@ title Activity Diagram (Full Cart)
 
 participant Front
 participant Back
+participant ProductGate
 participant OrderGate
 
 Front-> Back: <font color=blue><b>POST</font> /cart/shipmentType
