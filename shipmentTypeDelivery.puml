@@ -2,6 +2,10 @@
 
 title Activity Diagram (Full Cart)
 
+participant Front
+participant Back
+participant OrderGate
+
 Front-> Back: <font color=blue><b>POST</font> /cart/shipmentType
 Back-> OrderGate: /baskets (проверка наличия корзины)
 alt У пользователя есть активная корзина
