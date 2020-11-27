@@ -1,27 +1,27 @@
 alt #grey SMSTORE-1159 корзина в статусе LEFT
-		Back->ProductGate: /products/_search-by-ids-flex (запрашиваем информацию по продуктам)
+	Back->ProductGate: /products/_search-by-ids-flex (запрашиваем информацию по продуктам)
     	Back-> OrderGate: /baskets/{basketId}/restore (восстанавливаем протухшую корзину)
-		note right
+	note right
 		В запросе передаём все линии с новыми ценами
-		endnote
+	endnote
     	Back<--OrderGate: Возвращает полную корзину
-	end
-	alt #DodgerBlue SMSTORE-1159 корзина в статусе LEFT или territoryId на корзине и на сайте не совпадают
-		Back->ProductGate: /products/_search-by-ids-flex (запрашиваем информацию по продуктам)
-		alt #DodgerBlue корзина в статусе LEFT
+end
+alt #DodgerBlue SMSTORE-1159 корзина в статусе LEFT или territoryId на корзине и на сайте не совпадают
+	Back->ProductGate: /products/_search-by-ids-flex (запрашиваем информацию по продуктам)
+	alt #DodgerBlue корзина в статусе LEFT
     		Back-> OrderGate: /baskets/{basketId}/restore (восстанавливаем протухшую корзину)
-			note right
-				В запросе передаём все линии с новыми ценами
-			endnote
+		note right
+			В запросе передаём все линии с новыми ценами
+		endnote
     		Back<--OrderGate: Возвращает полную корзину
-		end
-		alt #DodgerBlue territoryId на корзине и на сайте не совпадают
-			Back->GeoGate:/territories/{territoryId}/macrocity (получение macrocityId)
-			Back<--GeoGate: Возвращает информацию с macrocityId
-			Back-> OrderGate: /baskets/{basketId}/macrocity (меняем город на корзине (macrocityId и territoryId))
-			note right
-				В запросе передаём все wareId с новыми ценами
-			endnote
-    		Back<--OrderGate: Возвращает полную корзину
-		end
+	end
+	alt #DodgerBlue territoryId на корзине и на сайте не совпадают
+		Back->GeoGate:/territories/{territoryId}/macrocity (получение macrocityId)
+		Back<--GeoGate: Возвращает информацию с macrocityId
+		Back-> OrderGate: /baskets/{basketId}/macrocity (меняем город на корзине (macrocityId и territoryId))
+		note right
+			В запросе передаём все wareId с новыми ценами
+		endnote
+	Back<--OrderGate: Возвращает полную корзину
+	end
 end
