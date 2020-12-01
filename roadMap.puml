@@ -53,6 +53,11 @@ sunday are closed
 
 [cart]->[checkout]
 
+[sort]->[auth]
 [auth]->[gtmGa]
+
+legend left
+<font color=red>Эпики не дошли до разработки</font>
+endlegend
 
 @endgantt
