@@ -1,0 +1,106 @@
+Объектная модель
+
+@startuml
+
+title Cart
+
+
+object "Корзина" as cart
+object "Список позиций (items)" as items
+object "Итого (total)" as total
+object "Цена (price)" as price
+object "Метод получения (shipmentType)" as shipmentType
+object "<font color=grey>Адрес доставки (deliveryAddress)" as deliveryAddress
+object "<font color=grey>Магазин получения (store)" as store
+object "Доступность (available)" as available
+object "<font color=grey>Время работы (workTime)" as workTime
+object "Продукт (product)" as product
+object "Скидки (discounts)" as discounts
+object "Данные (data)" as data
+
+cart --|>data
+data --|>items
+data --|>total
+data --|>shipmentType
+items --|>price
+items --|>available
+items --|>product
+product --|>price
+shipmentType --|>store
+shipmentType --|>deliveryAddress
+store --|>workTime
+available --|> state
+price --|> discounts
+
+
+cart : - <font color=red>Данные (data) : data [1]
+cart : - <font color=red>Версия корзины (version) : int[1]
+
+data : - <font color=red>Список позиций (items) : items [0..*]
+data : - <font color=red>Итого (total) : total [1]
+data : - Метод получения (shipmentType) : shipmentType [1]
+
+product : - <font color=red>ИД Цветомодели (productId) : String[1]
+product : - <font color=red>ИД Цветоразмера (wareId) : String[1]
+product : - <font color=red>Цена(price ) : price [1]
+
+items : - <font color=red>Продукт(product ) : product [1]
+items : - <font color=red>Кол-во (quantity) : int [1]
+items : - <font color=red>Цена(price ) : price [1]
+items : - Доступность(available) : available [0..*]
+
+
+price : - <font color=red>Цена продажи (retail) : decimal[1]
+price : - Цена по каталогу (catalog) : decimal[1]
+price : - Скидки (discounts) : discounts[0..*]
+
+discounts : - Наименование (name) : String[1]
+discounts : - Сумма скидки (value) : decimal[1]
+
+available : - Доступен для покупки (state) : String [1]
+available : - Количество доступных шт. выбранным способом (quantity) : int [1]
+
+enum state {
+    - IN_STOCK
+    - OUT_OF_STOCK
+}
+
+total : - <font color=red>Товары (productsQuantity) : int[1]
+total : - <font color=red>Товары (productsCost) : decimal[1]
+total : - Скидки и акции (discountAmount) : decimal[1]
+total : - Количество бонусов (bonusAmount) : decimal[1]
+total : - Применение бонусов (bonusApplied) : boolean[1]
+total : - Стоимость доставки (deliveryCost) : decimal[1]
+total : - <font color=red>Общая стоимость (totalCost) : decimal[1]
+
+shipmentType : - Выбранный способ получения (selected) : String[0..1]
+shipmentType : - Доступные способы получения (variants) : String[0..*]
+shipmentType : <font color=grey>- Магазин получения (store) : store[0..1]
+shipmentType : <font color=grey>- Адрес доставки (deliveryAddress) : deliveryAddress[0..1]
+
+store : <font color=grey>- Наименование (name) : String [0..1]
+store : <font color=grey>- Адрес (address) : String [0..1]
+store : <font color=grey>- Цвет ветки метро (metroColor) : String [0..1]
+store : <font color=grey>- Станция метро (metroStations): String [0..1]
+store : <font color=grey>- Время работы (workTime): workTime [0..1]
+
+workTime : <font color=grey>- Открытие (workStartTime) : String [0..1]
+workTime : <font color=grey>- Закрытие (workEndTime) : String [0..*]
+
+deliveryAddress : <font color=grey>- Город (city) : String [0..1]
+deliveryAddress : <font color=grey>- Улица (street) : String [0..*]
+deliveryAddress : <font color=grey>- Дом (house) : String [0..*]
+deliveryAddress : <font color=grey>- Квартира/Офис (apartment) : String [0..1]
+deliveryAddress : <font color=grey>- Этаж (floor): String [0..1]
+deliveryAddress : <font color=grey>- Подъезд (entrance): String [0..1]
+deliveryAddress : <font color=grey>- Домофон (doorphoneCode): String [0..1]
+
+legend left
+<font color=red>Обязательные поля</font>
+<font color=grey>Поля к удалению</font>
+<font color=blue>Новые поля</font>
+endlegend
+
+@enduml
+
+
