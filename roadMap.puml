@@ -21,6 +21,7 @@ sunday are closed
 [Пользовательское соглашение] as [privacy] lasts 1 week
 [Оферта] as [oferta] lasts 1 week
 [(галочки) + попап польз. соглашения] as [privacyPopUp] lasts 1 week
+[Рекламная рассылка] as [promo] lasts 1 week
 
 [Корзина] as [cart] lasts 5 week
 [Оплата] as [checkout] lasts 2 week
@@ -33,6 +34,7 @@ sunday are closed
 [userBonus] is colored in red
 [cjm] is colored in red
 [privacyPopUp] is colored in red
+[promo] is colored in red
 [gtmGa] is colored in red
 [checkout] is colored in red
 
@@ -50,6 +52,7 @@ sunday are closed
 [menu]->[privacy]
 [privacy]->[oferta]
 [oferta]->[privacyPopUp]
+[privacyPopUp]-> [promo]
 
 [cart]->[checkout]
 
