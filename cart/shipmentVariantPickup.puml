@@ -11,10 +11,13 @@ alt У пользователя есть активная корзина
 	Back<--OrderGate: Возвращает полную корзину
 	!include https://raw.githubusercontent.com/ViKt0R-K/plantuml/main/cart/leftOrTerritory.puml
 
-
-	Back-> OrderGate: /baskets/{basketId}/get-alt-channels (получаем доступные способы получения)
+	Back->OrderGate: /baskets/{{basket}}/delivery/get-alt-internal-pickup(получаем список магазинов)
 	note right: Отправляем в запросе все линии из массивов unallocatedLines и obtainPoints
-	Back<--OrderGate: Возвращает доступные способы получения
+	Back<--OrderGate: Возвращает список магазинов
+	Back->GeoGate: Запрос информации по магазинам
+	Back<--GeoGate: Возвращает информацию по магазинам
+
+
 	Front<-- Back: Возвращает информацию по вариантам получения
 else У пользователя нет активной корзины
 	Back<--OrderGate: Возвращает "basketExist": false
