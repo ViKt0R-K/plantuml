@@ -1,0 +1,32 @@
+?shipmentType=PICKUP
+@startuml
+
+title GET shipmentVariants(PICKIUP)
+
+Front-> Back: <font color=blue><b>GET</font> /web-api/v1/cart/shipmentVariants
+Back-> OrderGate: /baskets (проверка наличия корзины)
+alt У пользователя есть активная корзина
+	Back<--OrderGate: Возвращает ИД корзины пользователя
+	Back-> OrderGate: /baskets/{basketId} (получаем полную корзину)
+	Back<--OrderGate: Возвращает полную корзину
+	!include https://raw.githubusercontent.com/ViKt0R-K/plantuml/main/cart/leftOrTerritory.puml
+
+
+	
+	Back-> OrderGate: /baskets/{basketId}/get-alt-channels (получаем доступные способы получения)
+	note right: Отправляем в запросе все линии из массивов unallocatedLines и obtainPoints
+	Back<--OrderGate: Возвращает доступные способы получения
+	Front<-- Back: Возвращает информацию по вариантам получения
+else У пользователя нет активной корзины
+	Back<--OrderGate: Возвращает "basketExist": false
+	Front<-- Back: Возвращает информацию по состоянию полной корзины
+end
+
+
+legend left
+Поля без изменений
+<font color=grey>Поля к удалению</font>
+<font color=DodgerBlue>Новые поля</font>
+endlegend
+
+@enduml
