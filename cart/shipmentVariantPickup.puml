@@ -12,7 +12,6 @@ alt У пользователя есть активная корзина
 	!include https://raw.githubusercontent.com/ViKt0R-K/plantuml/main/cart/leftOrTerritory.puml
 
 
-	
 	Back-> OrderGate: /baskets/{basketId}/get-alt-channels (получаем доступные способы получения)
 	note right: Отправляем в запросе все линии из массивов unallocatedLines и obtainPoints
 	Back<--OrderGate: Возвращает доступные способы получения
