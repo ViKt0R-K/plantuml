@@ -1,0 +1,58 @@
+@startgantt
+project starts the 2020/11/16
+saturday are closed
+sunday are closed
+'2020/12/09 is closed
+2021/01/01 to 2021/01/10 is closed
+
+[Хлебные крошки] as [categoryBranch] lasts 1 week
+[Стандартные фасеты] as [fasets] lasts 2 week
+[Фасеты по цвету] as [fasetsC] lasts 1 week
+[Фасеты по технологиям] as [fasetsT] lasts 1 week
+[Фасеты маркеры\скидки\способы получения] as [fasetsH] lasts 2 week
+
+[ЛК мои данные] as [userHome] lasts 2 week
+[ЛК мои бонусы] as [userBonus] lasts 2 week
+
+[Сортировка в листинге] as [sort] lasts 1 week
+[Меню] as [menu] lasts 3 week
+[Магазины] as [store] lasts 2 week
+[Опросы по CJM] as [cjm] lasts 1 week
+[Пользовательское соглашение] as [privacy] lasts 1 week
+[Оферта] as [oferta] lasts 1 week
+[(галочки) + попап польз. соглашения] as [privacyPopUp] lasts 1 week
+
+[Корзина] as [cart] lasts 5 week
+[Оплата] as [checkout] lasts 2 week
+
+[Регистрация\авторизация] as [auth] lasts 4 week
+[GTM+GA Аналитика] as [gtmGa] lasts 3 week
+
+[fasetsH] is colored in red
+[store] is colored in red
+[userBonus] is colored in red
+[cjm] is colored in red
+[privacyPopUp] is colored in red
+[gtmGa] is colored in red
+[checkout] is colored in red
+
+[categoryBranch]->[fasets]
+[fasets]->[fasetsC]
+[fasetsC]->[fasetsT]
+[fasetsT]->[fasetsH]
+[fasets]->[userHome]
+[userHome]->[userBonus]
+
+
+[sort]->[menu]
+[menu]->[store]
+[menu]->[cjm]
+[menu]->[privacy]
+[privacy]->[oferta]
+[oferta]->[privacyPopUp]
+
+[cart]->[checkout]
+
+[auth]->[gtmGa]
+
+@endgantt
