@@ -13,6 +13,9 @@ sunday are closed
 
 [ЛК мои данные] as [userHome] lasts 2 week
 [ЛК мои бонусы] as [userBonus] lasts 2 week
+[ЛК: Мои заказы - изменение заказа] as [order] lasts 2 week
+[Info zone: Контакты] as [Info_zone_K] lasts 2 week
+[Info zone: Гарантийное обслуживание​] as [Info_zone_G] lasts 2 week
 
 [Сортировка в листинге] as [sort] lasts 1 week
 [Меню] as [menu] lasts 3 week
@@ -47,10 +50,12 @@ sunday are closed
 [fasetsT]->[fasetsH]
 [fasets]->[userHome]
 [userHome]->[userBonus]
-
+[userBonus]->[order]
 
 [sort]->[menu]
 [menu]->[store]
+[store]->[Info_zone_K]
+[Info_zone_K]->[Info_zone_G]
 [menu]->[cjm]
 [menu]->[privacy]
 [privacy]->[oferta]
