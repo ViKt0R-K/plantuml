@@ -22,6 +22,9 @@ sunday are closed
 [Оферта] as [oferta] lasts 1 week
 [(галочки) + попап польз. соглашения] as [privacyPopUp] lasts 1 week
 [Рекламная рассылка] as [promo] lasts 1 week
+[Страница Акций] as [action] lasts 1 week
+[Страница с ошибкой 404] as [404] lasts 1 week
+[О компании] as [about] lasts 1 week
 
 [Корзина] as [cart] lasts 5 week
 [Оплата] as [checkout] lasts 2 week
@@ -53,6 +56,9 @@ sunday are closed
 [privacy]->[oferta]
 [oferta]->[privacyPopUp]
 [privacyPopUp]-> [promo]
+[promo]-> [action]
+[action]-> [404]
+[404]-> [about]
 
 [cart]->[checkout]
 
