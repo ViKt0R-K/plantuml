@@ -14,11 +14,8 @@ alt У пользователя есть активная корзина
 	Back->OrderGate: /baskets/{{basket}}/delivery/get-alt-internal-pickup(получаем список магазинов)
 	note right: Отправляем в запросе все линии из массивов unallocatedLines и obtainPoints
 	Back<--OrderGate: Возвращает список магазинов
-	Back->GeoGate: Запрос информации по магазинам
-	note right: Надо вынести в отдельный метод и запрашивать информацию с фронта?
+	Back->GeoGate: /shops/search (запрос информации по магазинам)
 	Back<--GeoGate: Возвращает информацию по магазинам
-
-
 	Front<-- Back: Возвращает информацию по вариантам получения
 else У пользователя нет активной корзины
 	Back<--OrderGate: Возвращает "basketExist": false
