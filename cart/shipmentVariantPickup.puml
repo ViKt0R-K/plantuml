@@ -4,10 +4,10 @@
 title GET shipmentVariants(PICKIUP)
 
 Front-> Back: <font color=blue><b>GET</font> /web-api/v1/cart/shipmentVariants
-Back-> OrderGate: /baskets (проверка наличия корзины)
+Back-> OrderGate: /baskets/{basketId}/lite (проверка наличия корзины)
 alt У пользователя есть активная корзина
 	Back<--OrderGate: Возвращает ИД корзины пользователя
-	Back-> OrderGate: /baskets/{basketId} (получаем полную корзину)
+	Back-> OrderGate: /baskets/{basketId} (получаем корзину)
 	Back<--OrderGate: Возвращает полную корзину
 	!include https://raw.githubusercontent.com/ViKt0R-K/plantuml/main/cart/leftOrTerritory.puml
 
