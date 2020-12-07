@@ -1,9 +1,6 @@
-Объектная модель
-
 @startuml
 
 title Cart
-
 
 object "Корзина" as cart
 object "Список позиций (items)" as items
