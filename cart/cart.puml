@@ -8,9 +8,9 @@ object "Итого (total)" as total
 object "Цена (price)" as price
 object "Метод получения (shipmentType)" as shipmentType
 object "<font color=grey>Адрес доставки (deliveryAddress)" as deliveryAddress
-object "<font color=grey>Магазин получения (store)" as store
+object "Магазин получения (store)" as store
 object "Доступность (available)" as available
-object "<font color=grey>Время работы (workTime)" as workTime
+object "Время работы (workTime)" as workTime
 object "Продукт (product)" as product
 object "Скидки (discounts)" as discounts
 object "Данные (data)" as data
