@@ -72,6 +72,8 @@ total : - <font color=red>Общая стоимость (totalCost) : decimal[1]
 
 shipmentType : - Выбранный способ получения (selected) : String[0..1]
 shipmentType : - Доступные способы получения (variants) : String[0..*]
+shipmentType : - Дата доступности для получения(аvailabilityDate) : String[0..*]
+shipmentType : - Время для получения(аvailabilityTime) : String[0..*]
 shipmentType : - Магазин получения (store) : store[0..1]
 shipmentType : <font color=grey>- Адрес доставки (deliveryAddress) : deliveryAddress[0..1]
 
