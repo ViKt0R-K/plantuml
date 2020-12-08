@@ -1,4 +1,3 @@
-?shipmentType=PICKUP
 @startuml
 
 title GET shipmentVariants(PICKIUP)
