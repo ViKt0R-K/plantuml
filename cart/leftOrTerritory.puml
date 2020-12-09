@@ -1,4 +1,4 @@
-@startuml
+@startuml cart
 alt корзина в статусе LEFT или territoryId на корзине и на сайте не совпадают
 	Back->ProductGate: /products/_search-by-ids-flex (запрашиваем информацию по продуктам)
 	alt  корзина в статусе LEFT
