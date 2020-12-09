@@ -13,12 +13,19 @@ sunday are closed
 [Фасеты по цвету] as [fasetsC] lasts 1 week
 [Фасеты по технологиям] as [fasetsT] lasts 1 week
 [Фасеты маркеры\скидки\способы получения] as [fasetsH] lasts 2 week
+[Подсказки в поиске v1] as [search] lasts 2 week
+[Описание и бенефиты] as [benifits] lasts 1 week
+[Просмотр фото] as [photo] lasts 1 week
+[Способы получения] as [shipment] lasts 1 week
 
 [ЛК мои данные] as [userHome] lasts 2 week
 [ЛК мои бонусы] as [userBonus] lasts 2 week
 [ЛК: Мои заказы - изменение заказа] as [order] lasts 2 week
+[ЛК: Мои заказы - изменение заказа] as [change_order] lasts 2 week
+
 [Info zone: Контакты] as [Info_zone_K] lasts 2 week
 [Info zone: Гарантийное обслуживание​] as [Info_zone_G] lasts 2 week
+[Страница "Виды спорта"] as [sports] lasts 2 week
 
 [Сортировка в листинге] as [sort] lasts 1 week
 [Меню] as [menu] lasts 3 week
@@ -32,18 +39,17 @@ sunday are closed
 [Страница с ошибкой 404] as [404] lasts 1 week
 [О компании] as [about] lasts 1 week
 
-[Корзина] as [cart] lasts 5 week
+[Отзывы&Вопросы и ответы] as [ot_kt] lasts 2 week
+
+[Корзина] as [cart] lasts 8 week
 [Оплата] as [checkout] lasts 2 week
 
-[Регистрация\авторизация] as [auth] lasts 4 week
+[Регистрация\авторизация] as [auth] lasts 6 week
 [GTM+GA Аналитика] as [gtmGa] lasts 3 week
+[SEO (sitemap)] as [seo] lasts 1 week
 
-[fasetsH] is colored in red
 [store] is colored in red
 [userBonus] is colored in red
-[cjm] is colored in red
-[privacyPopUp] is colored in red
-[promo] is colored in red
 [gtmGa] is colored in red
 [checkout] is colored in red
 
@@ -51,14 +57,22 @@ sunday are closed
 [fasets]->[fasetsC]
 [fasetsC]->[fasetsT]
 [fasetsT]->[fasetsH]
+[fasetsH]->[search]
+[search]->[photo]
+[photo]->[shipment]
+[fasetsH]->[benifits]
+
 [fasets]->[userHome]
 [userHome]->[userBonus]
 [userBonus]->[order]
+[order]->[change_order]
 
 [sort]->[menu]
 [menu]->[store]
 [store]->[Info_zone_K]
 [Info_zone_K]->[Info_zone_G]
+[Info_zone_G]->[sports]
+
 [menu]->[cjm]
 [menu]->[privacy]
 [privacy]->[oferta]
@@ -68,10 +82,13 @@ sunday are closed
 [action]-> [404]
 [404]-> [about]
 
+[menu]->[ot_kt]
+
 [cart]->[checkout]
 
 [sort]->[auth]
 [auth]->[gtmGa]
+[gtmGa]->[seo]
 
 legend left
 <font color=red>Эпики не дошли до разработки</font>
