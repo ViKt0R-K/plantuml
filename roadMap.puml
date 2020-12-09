@@ -20,8 +20,7 @@ sunday are closed
 
 [ЛК мои данные] as [userHome] lasts 2 week
 [ЛК мои бонусы] as [userBonus] lasts 2 week
-[ЛК: Мои заказы - изменение заказа] as [order] lasts 2 week
-[ЛК: Мои заказы - изменение заказа] as [change_order] lasts 2 week
+'[ЛК: Мои заказы - изменение заказа] as [order] lasts 2 week
 
 [Info zone: Контакты] as [Info_zone_K] lasts 2 week
 [Info zone: Гарантийное обслуживание​] as [Info_zone_G] lasts 2 week
@@ -64,8 +63,7 @@ sunday are closed
 
 [fasets]->[userHome]
 [userHome]->[userBonus]
-[userBonus]->[order]
-[order]->[change_order]
+
 
 [sort]->[menu]
 [menu]->[store]
