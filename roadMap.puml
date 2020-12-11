@@ -17,6 +17,7 @@ sunday are closed
 [Описание и бенефиты] as [benifits] lasts 1 week
 [Просмотр фото] as [photo] lasts 1 week
 [Способы получения] as [shipment] lasts 1 week
+[Баннеры​ под сегмент] as [banners] lasts 2 week
 
 [ЛК мои данные] as [userHome] lasts 2 week
 [ЛК мои бонусы] as [userBonus] lasts 2 week
@@ -32,20 +33,29 @@ sunday are closed
 [Опросы по CJM] as [cjm] lasts 1 week
 [Пользовательское соглашение] as [privacy] lasts 1 week
 [Оферта] as [oferta] lasts 1 week
+[Клубная программа - страница] as [club] lasts 1 week
 [(галочки) + попап польз. соглашения] as [privacyPopUp] lasts 1 week
 [Рекламная рассылка] as [promo] lasts 1 week
 [Страница Акций] as [action] lasts 1 week
 [Страница с ошибкой 404] as [404] lasts 1 week
 [О компании] as [about] lasts 1 week
+[Статичная страница Оплата и доставка] as [st_bay_delyvery] lasts 1 week
+[Статичная страница Обмен и возврат] as [st_change_back] lasts 1 week
 
 [Отзывы&Вопросы и ответы] as [ot_kt] lasts 2 week
 
 [Корзина] as [cart] lasts 8 week
-[Оплата] as [checkout] lasts 2 week
+[Оплата на сайте] as [checkout] lasts 2 week
+[Статусы заказа в ЛК (new)​] as [lk_order_stat] lasts 1 week
+[Подарочные карты и ЭПК​] as [epk] lasts 2 week
+[Система Быстрых Платежей​] as [fast_plat] lasts 2 week
+[Трекинг online платежей​] as [plat_trek] lasts 2 week
+
 
 [Регистрация\авторизация] as [auth] lasts 6 week
 [GTM+GA Аналитика] as [gtmGa] lasts 3 week
 [SEO (sitemap)] as [seo] lasts 1 week
+[ГЛЦ] as [glc] lasts 2 week
 
 [store] is colored in red
 [userBonus] is colored in red
@@ -57,9 +67,10 @@ sunday are closed
 [fasetsC]->[fasetsT]
 [fasetsT]->[fasetsH]
 [fasetsH]->[search]
+[fasetsH]->[benifits]
 [search]->[photo]
 [photo]->[shipment]
-[fasetsH]->[benifits]
+[shipment]->[banners]
 
 [fasets]->[userHome]
 [userHome]->[userBonus]
@@ -74,19 +85,27 @@ sunday are closed
 [menu]->[cjm]
 [menu]->[privacy]
 [privacy]->[oferta]
-[oferta]->[privacyPopUp]
+[oferta]->[club]
+[club]->[privacyPopUp]
 [privacyPopUp]-> [promo]
 [promo]-> [action]
 [action]-> [404]
 [404]-> [about]
+[about]->[st_bay_delyvery]
+[st_bay_delyvery]->[st_change_back]
 
 [menu]->[ot_kt]
 
 [cart]->[checkout]
+[checkout]->[lk_order_stat]
+[lk_order_stat]->[epk]
+[epk]->[fast_plat]
+[fast_plat]->[plat_trek]
 
 [sort]->[auth]
 [auth]->[gtmGa]
 [gtmGa]->[seo]
+[seo]->[glc]
 
 legend left
 <font color=red>Эпики не дошли до разработки</font>
